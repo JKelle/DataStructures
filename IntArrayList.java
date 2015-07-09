@@ -14,7 +14,11 @@ public class IntArrayList {
 	 * @param vals is an array of numbers that should be copied into this list
 	 */
 	public IntArrayList(int[] vals) {
-		// your code here
+		size = vals.length;
+		arr = new int[size];
+		for(int i = 0; i < size; ++i) {
+			arr[i] = vals[i];
+		}
 	}
 
 	/**
@@ -51,7 +55,7 @@ public class IntArrayList {
 	 * @param val is the element to be inserted into this list
 	 * @param pos is the position (index) in the list at which to insert val
 	 */
-	public void insert(int val, int pos) {
+	public void insert(int pos, int val) {
 		// your code here
 	}
 
@@ -62,7 +66,7 @@ public class IntArrayList {
 	 * @param val is the new element that will overwrite the element at index pos
 	 * @param pos is the position (index) in the list at which to insert val
 	 */
-	public void set(int val, int pos) {
+	public void set(int pos, int val) {
 		// your code here
 	}
 
@@ -211,5 +215,16 @@ public class IntArrayList {
 		}
 
 		return true;
+	}
+
+
+	public String toString() {
+	    StringBuilder result = new StringBuilder(size() + 2);
+	    result.append("[");
+	    for(int x : arr) {
+	    	result.append(x + ", ");
+	    }
+	    result.append("]");
+	    return result.toString();
 	}
 }
