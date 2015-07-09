@@ -4,9 +4,15 @@ public class IntArrayList {
 	private int size;
 
 	public IntArrayList() {
-		// your code here
+		arr = new int[10];
+		size = 0;
 	}
 
+	/**
+	 * Constructor that initializes this list with specified values.
+	 * post: this list does not contian references to vals
+	 * @param vals is an array of numbers that should be copied into this list
+	 */
 	public IntArrayList(int[] vals) {
 		// your code here
 	}
@@ -17,6 +23,7 @@ public class IntArrayList {
 	 */
 	public int size() {
 		// your code here
+		return -1;
 	}
 
 	/**
@@ -67,6 +74,7 @@ public class IntArrayList {
 	 */
 	public int get(int pos) {
 		// your code here
+		return -1;
 	}
 
 	/**
@@ -77,6 +85,7 @@ public class IntArrayList {
 	 */
 	public boolean remove(int val) {
 		// your code here
+		return false;
 	}
 
 	/**
@@ -87,6 +96,7 @@ public class IntArrayList {
 	 */
 	public boolean removeAll(int val) {
 		// your code here
+		return false;
 	}
 
 	/**
@@ -97,6 +107,7 @@ public class IntArrayList {
 	 */
 	public int removePos(int pos) {
 		// your code here
+		return -1;
 	}
 
 	/**
@@ -106,6 +117,7 @@ public class IntArrayList {
 	 */
 	public int removeFront() {
 		// your code here
+		return -1;
 	}
 
 	/**
@@ -115,6 +127,7 @@ public class IntArrayList {
 	 */
 	public int removeBack() {
 		// your code here
+		return -1;
 	}
 
 	/**
@@ -134,6 +147,7 @@ public class IntArrayList {
 	 */
 	public int indexOf(int val) {
 		// your code here
+		return -1;
 	}
 
 	/**
@@ -146,6 +160,7 @@ public class IntArrayList {
 	 */
 	public int indexOf(int val, int pos) {
 		// your code here
+		return -1;
 	}
 
 	/**
@@ -166,6 +181,7 @@ public class IntArrayList {
 	 */
 	public IntArrayList getSubList(int start, int end) {
 		// your code here
+		return new IntArrayList();
 	}
 
 	/**
@@ -175,7 +191,7 @@ public class IntArrayList {
 	 * the same order as this list.
 	 */
 	public boolean equals(Object other) {
-		if (other == null || !other instanceof IntArrayList) {
+		if (other == null || !(other instanceof IntArrayList)) {
 			return false;
 		}
 
@@ -189,7 +205,7 @@ public class IntArrayList {
 		}
 
 		for(int i = 0; i < this.size(); i++) {
-			if (this.get(i) != other.get(i)) {
+			if (this.get(i) != otherList.get(i)) {
 				return false;
 			}
 		}
