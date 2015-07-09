@@ -11,5 +11,7 @@ ArrayList
 Fill in the missing code in `IntArrayList.java`.
 
 Compile and run tests with:
-`% javac *.java
-% java IntArrayListTests`
+
+`% javac *.java`
+
+`% java IntArrayListTests`
