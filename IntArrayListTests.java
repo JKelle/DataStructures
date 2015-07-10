@@ -218,9 +218,9 @@ public class IntArrayListTests {
 		for(int i = 100000; i < 200000; ++i) {
 			arr[i] = 1;
 		}
-		list = new IntArrayListSolution(arr);
+		list = new IntArrayList(arr);
 		list.removeAll(1);
-		test("removeAll 3.0", list, new IntArrayListSolution(answerArr));
+		test("removeAll 3.0", list, new IntArrayList(answerArr));
 		test("removeAll 3.1", list.size(), 100000);
 
 		arr = new int[2000000];
@@ -232,9 +232,9 @@ public class IntArrayListTests {
 		for(int i = 1000000; i < 2000000; ++i) {
 			arr[i] = 1;
 		}
-		list = new IntArrayListSolution(arr);
+		list = new IntArrayList(arr);
 		list.removeAll(1);
-		test("removeAll 4.0", list, new IntArrayListSolution(answerArr));
+		test("removeAll 4.0", list, new IntArrayList(answerArr));
 		test("removeAll 4.1", list.size(), 1000000);
 
 
