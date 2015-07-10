@@ -3,31 +3,31 @@ public class IntArrayListTests {
 
 	private static void test(String name, int result, int answer) {
 		if (result == answer) {
-			System.out.println(name + ": Passed");
+			System.out.println(name + ":  Passed");
 		}
 		else {
-			System.out.print(name + ": FAILED");
-			System.out.println("\texpected " + answer + ", got " + result);
+			System.out.print(name + ":  FAILED");
+			System.out.println("  expected " + answer + ", got " + result);
 		}
 	}
 
 	private static void test(String name, IntArrayList result, IntArrayList answer) {
 		if (answer.equals(result)) {
-			System.out.println(name + ": Passed");
+			System.out.println(name + ":  Passed");
 		}
 		else {
-			System.out.print(name + ": FAILED");
-			System.out.println("\texpected " + answer.toString() + ", got " + result.toString());
+			System.out.print(name + ":  FAILED");
+			System.out.println("  expected " + answer.toString() + ", got " + result.toString());
 		}
 	}
 
 	private static void test(String name, boolean result, boolean answer) {
 		if (answer == result) {
-			System.out.println(name + ": Passed");
+			System.out.println(name + ":  Passed");
 		}
 		else {
-			System.out.print(name + ": FAILED");
-			System.out.println("\texpected " + answer + ", got " + result);
+			System.out.print(name + ":  FAILED");
+			System.out.println("  expected " + answer + ", got " + result);
 		}
 	}
 
@@ -47,6 +47,9 @@ public class IntArrayListTests {
 
 		list = new IntArrayList(new int[]{1, 2, 3, 4, 5, 6});
 		test("size 3", list.size(), 6);
+
+
+		System.out.println();
 
 
 		// test equals(Object other)
@@ -70,6 +73,9 @@ public class IntArrayListTests {
 		test("equals 4", list1.equals(list2), false);
 
 
+		System.out.println();
+
+
 		// test add(int val)
 		list = new IntArrayList();
 		list.add(10);
@@ -88,6 +94,9 @@ public class IntArrayListTests {
 			arr[i] = i;
 		}
 		test("add 3", list, new IntArrayList(arr));
+
+
+		System.out.println();
 
 
 		// test addFront(int val)
@@ -110,6 +119,9 @@ public class IntArrayListTests {
 		test("addFront 3", list, new IntArrayList(arr));
 
 
+		System.out.println();
+
+
 		// test insert(int val, int pos)
 		list = new IntArrayList();
 		list.add(0);
@@ -128,6 +140,9 @@ public class IntArrayListTests {
 		test("insert 3", list, new IntArrayList(new int[]{-1, 0, 1, 2, 3, 99, 4}));
 
 
+		System.out.println();
+
+
 		// test set(int val, int pos)
 		list = new IntArrayList(new int[]{4, 1, 1, 3, 4, 10});
 		list.set(0, 0);
@@ -138,6 +153,9 @@ public class IntArrayListTests {
 
 		list.set(5, 100);
 		test("set 1", list, new IntArrayList(new int[]{0, 1, 2, 3, 4, 100}));
+
+
+		System.out.println();
 
 
 		// test get(int pos)
@@ -152,6 +170,117 @@ public class IntArrayListTests {
 			list.add(-1*i);
 		}
 		test("get 3", list.get(100), -94);
+
+
+		System.out.println();
+
+
+		// test remove(int val)
+		list = new IntArrayList(new int[]{1, 2, 3});
+		test("remove 0.0", list.remove(1), true);
+		test("remove 0.1", list, new IntArrayList(new int[]{2, 3}));
+		test("remove 0.2", list.size(), 2);
+
+		test("remove 1.0", list.remove(1), false);
+		test("remove 1.1", list, new IntArrayList(new int[]{2, 3}));
+		test("remove 1.2", list.size(), 2);
+
+		test("remove 2.0", list.remove(3), true);
+		test("remove 2.1", list, new IntArrayList(new int[]{2}));
+		test("remove 2.2", list.size(), 1);
+
+		list = new IntArrayList(new int[]{1, 2, 3, 2, 4});
+		test("remove 3.0", list.remove(2), true);
+		test("remove 3.1", list, new IntArrayList(new int[]{1, 2, 3, 4}));
+		test("remove 3.2", list.size(), 4);
+
+
+		System.out.println();
+
+
+		// removeAll(int val)
+		list = new IntArrayList(new int[]{1, 2, 3});
+		test("removeAll 0.0", list.removeAll(3), true);
+		test("removeAll 0.1", list, new IntArrayList(new int[]{1, 2}));
+		test("removeAll 0.2", list.size(), 2);
+
+		list = new IntArrayList(new int[]{1, 2, 2, 3});
+		test("removeAll 1.0", list.removeAll(2), true);
+		test("removeAll 1.1", list, new IntArrayList(new int[]{1, 3}));
+		test("removeAll 1.2", list.size(), 2);
+
+
+		System.out.println();
+
+
+		// removePos(int pos)
+		list = new IntArrayList(new int[]{7});
+		test("removePos 0.0", list.removePos(0), 7);
+		test("removePos 0.1", list, new IntArrayList());
+		test("removePos 0.2", list.size(), 0);
+
+		list = new IntArrayList(new int[]{7, 8, 9, 10});
+		test("removePos 1.0", list.removePos(2), 9);
+		test("removePos 1.1", list, new IntArrayList(new int[]{7, 8, 10}));
+		test("removePos 1.2", list.size(), 4);
+
+
+		System.out.println();
+
+
+		// removeFront()
+		list = new IntArrayList(new int[]{7});
+		test("removeFront 0.0", list.removeFront(), 7);
+		test("removeFront 0.1", list, new IntArrayList());
+		test("removeFront 0.2", list.size(), 0);
+
+		list = new IntArrayList(new int[]{7, 8, 9, 10});
+		test("removeFront 1.0", list.removeFront(), 7);
+		test("removeFront 1.1", list, new IntArrayList(new int[]{8, 9, 10}));
+		test("removeFront 1.2", list.size(), 4);
+
+
+		System.out.println();
+
+
+		// removeBack
+		list = new IntArrayList(new int[]{7});
+		test("removeBack 0.0", list.removeBack(), 7);
+		test("removeBack 0.1", list, new IntArrayList());
+		test("removeBack 0.2", list.size(), 0);
+
+		list = new IntArrayList(new int[]{7, 8, 9, 10});
+		test("removeBack 1.0", list.removeBack(), 10);
+		test("removeBack 1.1", list, new IntArrayList(new int[]{7, 8, 9}));
+		test("removeBack 1.2", list.size(), 4);
+
+
+		System.out.println();
+
+
+		// removeRange(int start, int end)
+		list = new IntArrayList(new int[]{0, 1, 2, 3, 4});
+		list.removeRange(0, 2);
+		test("removeRange 0.0", list, new IntArrayList(new int[]{2, 3, 4}));
+		test("removeRange 0.1", list.size(), 3);
+
+		list.removeRange(0, 2);
+		test("removeRange 1.0", list, new IntArrayList(new int[]{4}));
+		test("removeRange 1.1", list.size(), 1);
+
+		list.removeRange(0, 1);
+		test("removeRange 2.0", list, new IntArrayList());
+		test("removeRange 2.1", list.size(), 0);
+
+		list = new IntArrayList(new int[]{0, 1, 2, 3, 4, 8, 8, 1, 2, 9});
+		list.removeRange(4, 8);
+		test("removeRange 3.0", list, new IntArrayList(new int[]{0, 1, 2, 3, 2, 9}));
+		test("removeRange 3.1", list.size(), 6);
+
+
+		System.out.println();
+
+
 
 	}
 }
