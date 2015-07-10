@@ -198,7 +198,7 @@ public class IntArrayListTests {
 		System.out.println();
 
 
-		// removeAll(int val)
+		// test removeAll(int val)
 		list = new IntArrayList(new int[]{1, 2, 3});
 		test("removeAll 0.0", list.removeAll(3), true);
 		test("removeAll 0.1", list, new IntArrayList(new int[]{1, 2}));
@@ -213,7 +213,7 @@ public class IntArrayListTests {
 		System.out.println();
 
 
-		// removePos(int pos)
+		// test removePos(int pos)
 		list = new IntArrayList(new int[]{7});
 		test("removePos 0.0", list.removePos(0), 7);
 		test("removePos 0.1", list, new IntArrayList());
@@ -228,7 +228,7 @@ public class IntArrayListTests {
 		System.out.println();
 
 
-		// removeFront()
+		// test removeFront()
 		list = new IntArrayList(new int[]{7});
 		test("removeFront 0.0", list.removeFront(), 7);
 		test("removeFront 0.1", list, new IntArrayList());
@@ -243,7 +243,7 @@ public class IntArrayListTests {
 		System.out.println();
 
 
-		// removeBack
+		// test removeBack()
 		list = new IntArrayList(new int[]{7});
 		test("removeBack 0.0", list.removeBack(), 7);
 		test("removeBack 0.1", list, new IntArrayList());
@@ -258,7 +258,7 @@ public class IntArrayListTests {
 		System.out.println();
 
 
-		// removeRange(int start, int end)
+		// test removeRange(int start, int end)
 		list = new IntArrayList(new int[]{0, 1, 2, 3, 4});
 		list.removeRange(0, 2);
 		test("removeRange 0.0", list, new IntArrayList(new int[]{2, 3, 4}));
@@ -281,6 +281,85 @@ public class IntArrayListTests {
 		System.out.println();
 
 
+		// test indexOf(int val)
+		list = new IntArrayList(new int[]{2, 5, 4, 4, 4, 5});
+		test("indexOf 0", list.indexOf(2), 0);
+		test("indexOf 1", list.indexOf(5), 1);
+		test("indexOf 2", list.indexOf(4), 2);
+		test("indexOf 3", list.indexOf(1), -1);
+		test("indexOf 4", list.size(), 6);
+
+
+		System.out.println();
+
+
+		// test indexOf(int val, int pos)
+		list = new IntArrayList(new int[]{2, 5, 4, 4, 4, 5});
+		test("indexOf 0", list.indexOf(2, 0), 0);
+		test("indexOf 1", list.indexOf(2, 1), -1);
+		test("indexOf 2", list.indexOf(2, 4), -1);
+
+		test("indexOf 3", list.indexOf(5, 0), 1);
+		test("indexOf 4", list.indexOf(5, 1), 1);
+		test("indexOf 5", list.indexOf(5, 2), 5);
+
+		test("indexOf 3", list.indexOf(4, 0), 2);
+		test("indexOf 4", list.indexOf(4, 1), 2);
+		test("indexOf 5", list.indexOf(4, 2), 2);
+		test("indexOf 6", list.indexOf(4, 3), 3);
+		test("indexOf 7", list.indexOf(4, 4), 4);
+		test("indexOf 8", list.indexOf(4, 5), -1);
+
+		test("indexOf 9", list.indexOf(1), -1);
+		test("indexOf 10", list.size(), 6);
+
+
+		System.out.println();
+
+
+		// test clear()
+		list = new IntArrayList(new int[]{2, 5, 4, 4, 4, 5});
+		list.clear();
+		test("clear 0", list, new IntArrayList());
+		test("clear 1", list.size(), 0);
+
+		list.clear();
+		test("clear 2", list, new IntArrayList());
+		test("clear 3", list.size(), 0);
+
+		list.add(1);
+		list.add(1000000);
+		list.clear();
+		test("clear 4", list, new IntArrayList());
+		test("clear 5", list.size(), 0);
+
+
+		System.out.println();
+
+
+		// test getSubList(int start, int end)
+		list = new IntArrayList(new int[]{2, 5, 4, 4, 4, 5});
+		IntArrayList subList = list.getSubList(2, 5);
+		test("getSubList 0", subList.size(), 3);
+		test("getSubList 1", subList, new IntArrayList(new int[]{4, 4, 4}));
+		test("getSubList 2", list.size(), 6);
+		test("getSubList 3", list, new IntArrayList(new int[]{2, 5, 4, 4, 4, 5}));
+
+		arr = new int[1000];
+		for(int i = 0; i < 1000; ++i) {
+			arr[i] = (int)(Math.random() * 100);
+		}
+		int[] subArr = new int[250];
+		for(int i = 0; i < 250; ++i) {
+			subArr[i] = arr[500 + i];
+		}
+
+		list = new IntArrayList(arr);
+		subList = list.getSubList(500, 750);
+		test("getSubList 4", subList.size(), 250);
+		test("getSubList 5", subList, new IntArrayList(subArr));
+		test("getSubList 6", list.size(), 1000);
+		test("getSubList 7", list, new IntArrayList(arr));
 
 	}
 }
