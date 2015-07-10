@@ -191,7 +191,7 @@ public class IntArrayListTests {
 
 		list = new IntArrayList(new int[]{1, 2, 3, 2, 4});
 		test("remove 3.0", list.remove(2), true);
-		test("remove 3.1", list, new IntArrayList(new int[]{1, 2, 3, 4}));
+		test("remove 3.1", list, new IntArrayList(new int[]{1, 3, 2, 4}));
 		test("remove 3.2", list.size(), 4);
 
 
@@ -209,6 +209,34 @@ public class IntArrayListTests {
 		test("removeAll 1.1", list, new IntArrayList(new int[]{1, 3}));
 		test("removeAll 1.2", list.size(), 2);
 
+		arr = new int[200000];
+		int[] answerArr = new int[100000];
+		for(int i = 0; i < 100000; ++i) {
+			arr[i] = 0;
+			answerArr[i] = 0;
+		}
+		for(int i = 100000; i < 200000; ++i) {
+			arr[i] = 1;
+		}
+		list = new IntArrayListSolution(arr);
+		list.removeAll(1);
+		test("removeAll 3.0", list, new IntArrayListSolution(answerArr));
+		test("removeAll 3.1", list.size(), 100000);
+
+		arr = new int[2000000];
+		answerArr = new int[1000000];
+		for(int i = 0; i < 1000000; ++i) {
+			arr[i] = 0;
+			answerArr[i] = 0;
+		}
+		for(int i = 1000000; i < 2000000; ++i) {
+			arr[i] = 1;
+		}
+		list = new IntArrayListSolution(arr);
+		list.removeAll(1);
+		test("removeAll 4.0", list, new IntArrayListSolution(answerArr));
+		test("removeAll 4.1", list.size(), 1000000);
+
 
 		System.out.println();
 
@@ -222,7 +250,7 @@ public class IntArrayListTests {
 		list = new IntArrayList(new int[]{7, 8, 9, 10});
 		test("removePos 1.0", list.removePos(2), 9);
 		test("removePos 1.1", list, new IntArrayList(new int[]{7, 8, 10}));
-		test("removePos 1.2", list.size(), 4);
+		test("removePos 1.2", list.size(), 3);
 
 
 		System.out.println();
@@ -237,7 +265,7 @@ public class IntArrayListTests {
 		list = new IntArrayList(new int[]{7, 8, 9, 10});
 		test("removeFront 1.0", list.removeFront(), 7);
 		test("removeFront 1.1", list, new IntArrayList(new int[]{8, 9, 10}));
-		test("removeFront 1.2", list.size(), 4);
+		test("removeFront 1.2", list.size(), 3);
 
 
 		System.out.println();
@@ -252,7 +280,7 @@ public class IntArrayListTests {
 		list = new IntArrayList(new int[]{7, 8, 9, 10});
 		test("removeBack 1.0", list.removeBack(), 10);
 		test("removeBack 1.1", list, new IntArrayList(new int[]{7, 8, 9}));
-		test("removeBack 1.2", list.size(), 4);
+		test("removeBack 1.2", list.size(), 3);
 
 
 		System.out.println();
