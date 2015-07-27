@@ -26,8 +26,15 @@ public class IntArrayList {
 	 * @return the number of elements in this list
 	 */
 	public int size() {
-		// your code here
-		return -1;
+		return size;
+	}
+
+	private void resize() {
+		int[] newArr = new int[size() * 2];
+		for(int i = 0; i < size(); ++i) {
+			newArr[i] = arr[i];
+		}
+		arr = newArr;
 	}
 
 	/**
@@ -36,7 +43,7 @@ public class IntArrayList {
 	 * @param val is the element to be added to the end of this list
 	 */
 	public void add(int val) {
-		// your code here
+		insert(size(), val);
 	}
 
 	/**
@@ -45,7 +52,7 @@ public class IntArrayList {
 	 * @param val is the element to be added to the front of this list
 	 */
 	public void addFront(int val) {
-		// your code here
+		insert(0, val);
 	}
 
 	/**
@@ -56,7 +63,14 @@ public class IntArrayList {
 	 * @param pos is the position (index) in the list at which to insert val
 	 */
 	public void insert(int pos, int val) {
-		// your code here
+		if (size() == arr.length) {
+			resize();
+		}
+		for(int i = size(); i > pos; --i) {
+			arr[i] = arr[i - 1];
+		}
+		arr[pos] = val;
+		++size;
 	}
 
 	/**
@@ -67,7 +81,7 @@ public class IntArrayList {
 	 * @param pos is the position (index) in the list at which to insert val
 	 */
 	public void set(int pos, int val) {
-		// your code here
+		arr[pos] = val;
 	}
 
 	/**
@@ -77,8 +91,7 @@ public class IntArrayList {
 	 * @return the element at the given index in this list
 	 */
 	public int get(int pos) {
-		// your code here
-		return -1;
+		return arr[pos];
 	}
 
 	/**
@@ -88,8 +101,12 @@ public class IntArrayList {
 	 * @return true if an element was removed, false otherwise
 	 */
 	public boolean remove(int val) {
-		// your code here
-		return false;
+		int pos = indexOf(val);
+		if (pos == -1) {
+			return false;
+		}
+		removePos(pos);
+		return true;
 	}
 
 	/**
@@ -99,8 +116,17 @@ public class IntArrayList {
 	 * @return true if an element was removed, false otherwise
 	 */
 	public boolean removeAll(int val) {
-		// your code here
-		return false;
+		int i = 0;
+		int j = 0;
+		while(j < size()) {
+			if (arr[j] != val) {
+				arr[i] = arr[j];
+				++i;
+			}
+			++j;
+		}
+		size -= j - i;
+		return i != j;
 	}
 
 	/**
@@ -110,8 +136,12 @@ public class IntArrayList {
 	 * @return the removed element
 	 */
 	public int removePos(int pos) {
-		// your code here
-		return -1;
+		int val = arr[pos];
+		for(int i = pos; i < size() - 1; ++i) {
+			arr[i] = arr[i + 1];
+		}
+		--size;
+		return val;
 	}
 
 	/**
@@ -120,8 +150,7 @@ public class IntArrayList {
 	 * @return the removed element
 	 */
 	public int removeFront() {
-		// your code here
-		return -1;
+		return removePos(0);
 	}
 
 	/**
@@ -130,8 +159,7 @@ public class IntArrayList {
 	 * @return the removed element
 	 */
 	public int removeBack() {
-		// your code here
-		return -1;
+		return removePos(size() - 1);
 	}
 
 	/**
@@ -141,7 +169,12 @@ public class IntArrayList {
 	 * @param end is the ending index of the range, exclusive
 	 */
 	public void removeRange(int start, int end) {
-		// your code here
+		while(end < size()) {
+			arr[start] = arr[end];
+			++start;
+			++end;
+		}
+		size -= end - start;
 	}
 
 	/**
@@ -150,8 +183,7 @@ public class IntArrayList {
 	 * @return the index of val, or -1 if val is not in the list
 	 */
 	public int indexOf(int val) {
-		// your code here
-		return -1;
+		return indexOf(val, 0);
 	}
 
 	/**
@@ -163,7 +195,11 @@ public class IntArrayList {
 	 * @return the index of val, or -1 if val is not in the list
 	 */
 	public int indexOf(int val, int pos) {
-		// your code here
+		for(int i = pos; i < size(); ++i) {
+			if (arr[i] == val) {
+				return i;
+			}
+		}
 		return -1;
 	}
 
@@ -172,7 +208,7 @@ public class IntArrayList {
 	 * post: size() = 0
 	 */
 	public void clear() {
-		// your code here
+		size = 0;
 	}
 
 	/**
@@ -184,8 +220,11 @@ public class IntArrayList {
 	 * @return new IntArrayList
 	 */
 	public IntArrayList getSubList(int start, int end) {
-		// your code here
-		return new IntArrayList();
+		int[] subArr = new int[end - start];
+		for(int i = 0; i < end - start; ++i) {
+			subArr[i] = arr[start + i];
+		}
+		return new IntArrayList(subArr);
 	}
 
 	/**
