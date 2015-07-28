@@ -125,7 +125,7 @@ public class IntArrayList {
 			}
 			++j;
 		}
-		size -= j - i;
+		size = i;
 		return i != j;
 	}
 
