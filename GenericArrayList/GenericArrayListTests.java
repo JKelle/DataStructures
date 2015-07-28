@@ -99,6 +99,10 @@ public class GenericArrayListTests {
 		listC.insert(0, '*');
 		test("insert 2", listC, new GenericArrayList<Character>(new Character[]{'*', 'd', 'o', 'g', 's', '!'}));
 
+		listC = new GenericArrayList<Character>();
+		listC.insert(0, 'x');
+		test("insert 3", listC, new GenericArrayList<Character>(new Character[]{'x'}));
+
 
 		System.out.println();
 
@@ -160,6 +164,11 @@ public class GenericArrayListTests {
 		listI = new GenericArrayList<Integer>(new Integer[]{7, 8, 9, 10});
 		test("removePos 1.0", listI.removePos(2), 9);
 		test("removePos 1.1", listI, new GenericArrayList<Integer>(new Integer[]{7, 8, 10}));
+		test("removePos 1.2", listI.size(), 3);
+
+		listI = new GenericArrayList<Integer>(new Integer[]{7, 8, 9, 10});
+		test("removePos 1.0", listI.removePos(3), 10);
+		test("removePos 1.1", listI, new GenericArrayList<Integer>(new Integer[]{7, 8, 9}));
 		test("removePos 1.2", listI.size(), 3);
 
 
