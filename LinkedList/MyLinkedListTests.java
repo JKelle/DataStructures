@@ -269,6 +269,18 @@ public class MyLinkedListTests {
 		test("indexOf(Object obj) 4", sList1.indexOf("brown"), -1);
 		test("indexOf(Object obj) 5", sList1.indexOf(123), -1);
 
+
+		// isEmpty()
+		test("isEmpty() 0", sList1.isEmpty(), false);
+
+		sList1.clear();
+		test("isEmpty() 1", sList1.isEmpty(), true);
+
+		sList1.add("Hello");
+		test("isEmpty() 2", sList1.isEmpty(), false);
+
+		test("isEmpty() 3", new MyLinkedList<Double>().isEmpty(), true);
+
  	}
 
 }
