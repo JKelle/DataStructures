@@ -28,11 +28,83 @@ public class MyLinkedListTests {
 		MyLinkedList<Integer> iList1 = new MyLinkedList<Integer>();
 		MyLinkedList<Integer> iList2 = new MyLinkedList<Integer>();
 
-		// MyIterator hasNext()
+		// MyIterator hasNext(), next(), remove()
 		Iterator<Integer> iter1 = iList1.iterator();
 		Iterator<Integer> iter2 = iList1.iterator();
+
 		test("iterator() 0", iter1 == iter2, false);
+
 		test("hasNext() 0", iter1.hasNext(), false);
+
+		iList1 = new MyLinkedList<Integer>(new Integer[]{1, 2, 3, 4});
+		test("hasNext() 1", iter1.hasNext(), false);
+
+		Iterator<Integer> iter = iList1.iterator();
+		test("hasNext() 2", iter.hasNext(), true);
+
+		String name = "remove() 0";
+		try {
+			iter.remove();
+		}
+		catch(Exception e) {
+			if(e instanceof IllegalStateException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IllegalStateException();
+				printFailed(name, e, expected);
+			}
+		}
+
+		test("next() 0", iter.next(), 1);
+
+		iter.remove();
+		test("remove() 1", iList1, new MyLinkedList<Integer>(new Integer[]{2, 3, 4}));
+
+		name = "remove() 2";
+		try {
+			iter.remove();
+		}
+		catch(Exception e) {
+			if(e instanceof IllegalStateException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IllegalStateException();
+				printFailed(name, e, expected);
+			}
+		}
+
+		test("hasNext() 3", iter.hasNext(), true);
+
+		test("next() 1", iter.next(), 2);
+		test("hasNext() 4", iter.hasNext(), true);
+		test("next() 2", iter.next(), 3);
+		test("hasNext() 5", iter.hasNext(), true);
+		test("next() 3", iter.next(), 4);
+		test("hasNext() 6", iter.hasNext(), false);
+
+		iter.remove();
+		test("remove() 3", iList1, new MyLinkedList<Integer>(new Integer[]{2, 3}));
+
+		test("hasNext() 7", iter.hasNext(), false);
+
+		name = "remove() 4";
+		try {
+			iter.remove();
+		}
+		catch(Exception e) {
+			if(e instanceof IllegalStateException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IllegalStateException();
+				printFailed(name, e, expected);
+			}
+		}
+
+		test("hasNext() 8", iter.hasNext(), false);
+
 
 		// add(E element)
 		iList1 = new MyLinkedList<Integer>();
@@ -232,7 +304,7 @@ public class MyLinkedListTests {
 		test("get(int index) 1", sList1.get(4), "blue");
 		test("get(int index) 2", sList1.get(5), "purple");
 
-		String name = "get(int index) 3";
+		name = "get(int index) 3";
 		try {
 			sList1.get(-1);
 		}
@@ -280,6 +352,7 @@ public class MyLinkedListTests {
 		test("isEmpty() 2", sList1.isEmpty(), false);
 
 		test("isEmpty() 3", new MyLinkedList<Double>().isEmpty(), true);
+
 
  	}
 
