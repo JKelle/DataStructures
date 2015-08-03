@@ -429,6 +429,42 @@ public class MyLinkedListTests {
 		test("remove(int index) 7", sList1.remove(3), "purple");
 		test("remove(int index) 8", sList1, new MyLinkedList<String>(new String[]{"red", "orange", "yellow"}));
 
+
+		// remove(Object obj)
+		sList1.clear();
+		sList1.add("red");
+		sList1.add("orange");
+		sList1.add("yellow");
+		sList1.add("green");
+		sList1.add("blue");
+		sList1.add("purple");
+
+		test("remove(Object obj) 0", sList1.remove("red"), true);
+		test("remove(Object obj) 1", sList1, new MyLinkedList<String>(new String[]{"orange", "yellow", "green", "blue", "purple"}));
+
+		test("remove(Object obj) 2", sList1.remove("red"), false);
+		test("remove(Object obj) 3", sList1, new MyLinkedList<String>(new String[]{"orange", "yellow", "green", "blue", "purple"}));
+
+		test("remove(Object obj) 4", sList1.remove("purple"), true);
+		test("remove(Object obj) 5", sList1, new MyLinkedList<String>(new String[]{"orange", "yellow", "green", "blue"}));
+
+		test("remove(Object obj) 6", sList1.remove(new Character('x')), false);
+		test("remove(Object obj) 7", sList1, new MyLinkedList<String>(new String[]{"orange", "yellow", "green", "blue"}));
+
+		test("remove(Object obj) 8", sList1.remove(sList1), false);
+		test("remove(Object obj) 9", sList1, new MyLinkedList<String>(new String[]{"orange", "yellow", "green", "blue"}));
+
+		test("remove(Object obj) 10", sList1.remove("green"), true);
+		test("remove(Object obj) 11", sList1, new MyLinkedList<String>(new String[]{"orange", "yellow", "blue"}));
+
+		sList1.remove("yellow");
+		sList1.remove("orange");
+		sList1.remove("red");
+		sList1.remove("green");
+		sList1.remove("green");
+		sList1.remove("green");
+		sList1.remove("blue");
+		test("remove(Object obj) 12", sList1, new MyLinkedList<String>());
  	}
 
 }
