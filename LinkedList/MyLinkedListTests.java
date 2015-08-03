@@ -21,8 +21,8 @@ public class MyLinkedListTests {
 		// MyIterator hasNext()
 		Iterator<Integer> iter1 = iList1.iterator();
 		Iterator<Integer> iter2 = iList1.iterator();
-		test("iterator() 1", iter1 == iter2, false);
-		test("hasNext() 1", iter1.hasNext(), false);
+		test("iterator() 0", iter1 == iter2, false);
+		test("hasNext() 0", iter1.hasNext(), false);
 
 		// add(E element)
 		iList1 = new MyLinkedList<Integer>();
@@ -45,8 +45,32 @@ public class MyLinkedListTests {
 		iList1.add(2);
 		iList1.add(4);
 		iList1.add(8);
-		iList2 = new MyLinkedList<Integer>(new Integer[]{8, 1, 2, 4, 8});
+		iList1.add(16);
+		iList2 = new MyLinkedList<Integer>(new Integer[]{8, 1, 2, 4, 8, 16});
 		test("add(E element) 5", iList1, iList2);
+
+		test("add(E element) 6", iList1.size(), 6);
+
+
+		// add(int index, E element)
+		MyLinkedList<String> sList1 = new MyLinkedList<String>();
+
+		sList1.add(0, "Hello");
+		test("add(int index, E element) 0", sList1, new MyLinkedList<String>(new String[]{"Hello"}));
+
+		sList1.add(1, "World");
+		test("add(int index, E element) 1", sList1, new MyLinkedList<String>(new String[]{"Hello", "World"}));
+
+		sList1.add(0, "burrito");
+		test("add(int index, E element) 2", sList1, new MyLinkedList<String>(new String[]{"burrito", "Hello", "World"}));
+
+		sList1.add(3, "java");
+		test("add(int index, E element) 3", sList1, new MyLinkedList<String>(new String[]{"burrito", "Hello", "World", "java"}));
+
+		sList1.add(2, "LinkedList");
+		test("add(int index, E element) 3", sList1, new MyLinkedList<String>(new String[]{"burrito", "Hello", "LinkedList", "World", "java"}));
+
+		test("add(int index, E element) 4", sList1.size(), 5);
 	}
 
 }
