@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 public class MyLinkedListTests {
@@ -71,6 +73,39 @@ public class MyLinkedListTests {
 		test("add(int index, E element) 3", sList1, new MyLinkedList<String>(new String[]{"burrito", "Hello", "LinkedList", "World", "java"}));
 
 		test("add(int index, E element) 4", sList1.size(), 5);
-	}
+
+
+		// addAll(Collection c)
+		MyLinkedList<Character> cList = new MyLinkedList<Character>();
+		Collection<Character> c = new ArrayList<Character>();
+
+		c.add('a');
+		c.add('p');
+		c.add('p');
+		c.add('l');
+		c.add('e');
+		boolean changed = cList.addAll(c);
+		test("addAll(Collection c) 0", cList, new MyLinkedList<Character>(new Character[]{'a', 'p', 'p', 'l', 'e'}));
+		test("addAll(Collection c) 1", changed, true);
+		test("addAll(Collection c) 2", cList.size(), 5);
+
+		changed = cList.addAll(new ArrayList<Character>());
+		test("addAll(Collection c) 3", cList, new MyLinkedList<Character>(new Character[]{'a', 'p', 'p', 'l', 'e'}));
+		test("addAll(Collection c) 4", changed, false);
+		test("addAll(Collection c) 5", cList.size(), 5);
+
+		c.clear();
+		c.add('b');
+		c.add('a');
+		c.add('n');
+		c.add('a');
+		c.add('n');
+		c.add('a');
+		changed = cList.addAll(c);
+		test("addAll(Collection c) 6", cList, new MyLinkedList<Character>(new Character[]{'a', 'p', 'p', 'l', 'e', 'b', 'a', 'n', 'a', 'n', 'a'}));
+		test("addAll(Collection c) 7", changed, true);
+		test("addAll(Collection c) 8", cList.size(), 11);
+
+ 	}
 
 }
