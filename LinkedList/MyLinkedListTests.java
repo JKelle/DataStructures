@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Arrays;
 
 public class MyLinkedListTests {
 
@@ -354,6 +355,18 @@ public class MyLinkedListTests {
 		test("isEmpty() 3", new MyLinkedList<Double>().isEmpty(), true);
 
 
+		// lastIndexOf(Object obj)
+		iList.clear();
+		test("lastIndexOf(Object obj) 0", iList.lastIndexOf(2), -1);
+
+		//										 0  1  2  3  4  5  6  7  8  9  10 11
+		iList.addAll(Arrays.asList(new Integer[]{1, 2, 2, 3, 2, 4, 2, 3, 4, 3, 4, 4}));
+		test("lastIndexOf(Object obj) 1", iList.lastIndexOf(2), 6);
+		test("lastIndexOf(Object obj) 2", iList.lastIndexOf(4), 11);
+		test("lastIndexOf(Object obj) 3", iList.lastIndexOf(3), 9);
+		test("lastIndexOf(Object obj) 4", iList.lastIndexOf(1), 0);
+		test("lastIndexOf(Object obj) 5", iList.lastIndexOf("burrito"), -1);
+		test("lastIndexOf(Object obj) 6", iList.lastIndexOf(null), -1);
  	}
 
 }
