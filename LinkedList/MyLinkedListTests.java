@@ -367,6 +367,68 @@ public class MyLinkedListTests {
 		test("lastIndexOf(Object obj) 4", iList.lastIndexOf(1), 0);
 		test("lastIndexOf(Object obj) 5", iList.lastIndexOf("burrito"), -1);
 		test("lastIndexOf(Object obj) 6", iList.lastIndexOf(null), -1);
+
+
+		// remove(int index)
+		sList1.clear();
+		name = "remove(int index) 0";
+		try {
+			sList1.remove(0);
+		}
+		catch(Exception e) {
+			if(e instanceof IndexOutOfBoundsException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IndexOutOfBoundsException();
+				printFailed(name, e, expected);
+			}
+		}
+
+		sList1.add("red");
+		test("remove(int index) 1", sList1.remove(0), "red");
+		test("remove(int index) 2", sList1, new MyLinkedList<String>());
+
+		sList1.add("red");
+		sList1.add("orange");
+		sList1.add("yellow");
+		sList1.add("green");
+		sList1.add("blue");
+		sList1.add("purple");
+
+		name = "remove(int index) 3";
+		try {
+			sList1.remove(6);
+		}
+		catch(Exception e) {
+			if(e instanceof IndexOutOfBoundsException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IndexOutOfBoundsException();
+				printFailed(name, e, expected);
+			}
+		}
+
+		name = "remove(int index) 4";
+		try {
+			sList1.remove(-1);
+		}
+		catch(Exception e) {
+			if(e instanceof IndexOutOfBoundsException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IndexOutOfBoundsException();
+				printFailed(name, e, expected);
+			}
+		}
+
+		test("remove(int index) 5", sList1.remove(3), "green");
+		test("remove(int index) 6", sList1.remove(3), "blue");
+		test("remove(int index) 7", sList1.remove(3), "purple");
+		test("remove(int index) 8", sList1, new MyLinkedList<String>(new String[]{"red", "orange", "yellow"}));
+
  	}
 
 }
