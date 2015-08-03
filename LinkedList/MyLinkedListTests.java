@@ -235,7 +235,8 @@ public class MyLinkedListTests {
 		String name = "get(int index) 3";
 		try {
 			sList1.get(-1);
-		} catch(Exception e) {
+		}
+		catch(Exception e) {
 			if(e instanceof IndexOutOfBoundsException){
 				printPassed(name);
 			}
@@ -248,7 +249,8 @@ public class MyLinkedListTests {
 		name = "get(int index) 4";
 		try {
 			sList1.get(6);
-		} catch(Exception e) {
+		}
+		catch(Exception e) {
 			if(e instanceof IndexOutOfBoundsException){
 				printPassed(name);
 			}
@@ -257,6 +259,15 @@ public class MyLinkedListTests {
 				printFailed(name, e, expected);
 			}
 		}
+
+
+		// indexOf(Object obj)
+		test("indexOf(Object obj) 0", sList1.indexOf("red"), 0);
+		test("indexOf(Object obj) 1", sList1.indexOf("orange"), 1);
+		test("indexOf(Object obj) 2", sList1.indexOf("yellow"), 2);
+		test("indexOf(Object obj) 3", sList1.indexOf("purple"), 5);
+		test("indexOf(Object obj) 4", sList1.indexOf("brown"), -1);
+		test("indexOf(Object obj) 5", sList1.indexOf(123), -1);
 
  	}
 
