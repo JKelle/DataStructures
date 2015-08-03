@@ -5,13 +5,21 @@ import java.util.Iterator;
 
 public class MyLinkedListTests {
 
+	private static void printPassed(String name) {
+		System.out.println(name + ":  Passed");
+	}
+
+	private static void printFailed(String name, Object result, Object answer) {
+		System.out.print(name + ":  FAILED");
+		System.out.println("  expected " + answer.toString() + ", got " + result.toString());
+	}
+
 	private static void test(String name, Object result, Object answer) {
 		if(answer.equals(result)) {
-			System.out.println(name + ":  Passed");
+			printPassed(name);
 		}
 		else {
-			System.out.print(name + ":  FAILED");
-			System.out.println("  expected " + answer.toString() + ", got " + result.toString());
+			printFailed(name, result, answer);
 		}
 	}
 
@@ -210,6 +218,46 @@ public class MyLinkedListTests {
 		c.add('b');
 		c.add('u');
 		test("containsAll(Collection c) 7", cList.containsAll(c), false);
+
+
+		// get(int index)
+		sList1.clear();
+		sList1.add("red");
+		sList1.add("orange");
+		sList1.add("yellow");
+		sList1.add("green");
+		sList1.add("blue");
+		sList1.add("purple");
+		test("get(int index) 0", sList1.get(0), "red");
+		test("get(int index) 1", sList1.get(4), "blue");
+		test("get(int index) 2", sList1.get(5), "purple");
+
+		String name = "get(int index) 3";
+		try {
+			sList1.get(-1);
+		} catch(Exception e) {
+			if(e instanceof IndexOutOfBoundsException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IndexOutOfBoundsException();
+				printFailed(name, e, expected);
+			}
+		}
+
+		name = "get(int index) 4";
+		try {
+			sList1.get(6);
+		} catch(Exception e) {
+			if(e instanceof IndexOutOfBoundsException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IndexOutOfBoundsException();
+				printFailed(name, e, expected);
+			}
+		}
+
  	}
 
 }
