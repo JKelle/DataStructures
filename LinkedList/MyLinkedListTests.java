@@ -106,6 +106,110 @@ public class MyLinkedListTests {
 		test("addAll(Collection c) 7", changed, true);
 		test("addAll(Collection c) 8", cList.size(), 11);
 
+
+		// clear()
+		cList.clear();
+		test("clear() 0", cList.size(), 0);
+		test("clear() 1", cList, new MyLinkedList<Character>());
+
+		cList.clear();
+		test("clear() 2", cList.size(), 0);
+		test("clear() 3", cList, new MyLinkedList<Character>());
+
+		cList.add('q');
+		c.clear();
+		c.add('w');
+		c.add('r');
+		c.add('t');
+		c.add('y');
+		cList.addAll(c);
+		cList.add(2, 'e');
+		test("clear() 4", cList, new MyLinkedList<Character>(new Character[]{'q', 'w', 'e', 'r', 't', 'y'}));
+		test("clear() 5", cList.size(), 6);
+
+		cList.clear();
+		test("clear() 6", cList.size(), 0);
+		test("clear() 7", cList, new MyLinkedList<Character>());
+
+		cList.clear();
+		cList.clear();
+		cList.clear();
+		cList.clear();
+		cList.clear();
+		test("clear() 8", cList.size(), 0);
+		test("clear() 9", cList, new MyLinkedList<Character>());
+
+
+		// contains(Object obj)
+		MyLinkedList<Integer> iList = new MyLinkedList<Integer>(new Integer[]{0, 1, 2, 3, 5, 6, 8, 9});
+		test("contains(Object obj) 0", iList.contains(0), true);
+		test("contains(Object obj) 1", iList.contains(1), true);
+		test("contains(Object obj) 2", iList.contains(3), true);
+		test("contains(Object obj) 3", iList.contains(4), false);
+		test("contains(Object obj) 4", iList.contains(5), true);
+		test("contains(Object obj) 5", iList.contains(8), true);
+		test("contains(Object obj) 6", iList.contains(9), true);
+		test("contains(Object obj) 7", iList.contains(-1), false);
+		test("contains(Object obj) 8", iList.contains(10), false);
+
+		iList.clear();
+		test("contains(Object obj) 9", iList.contains(0), false);
+		test("contains(Object obj) 10", iList.contains(9), false);
+
+		sList1 = new MyLinkedList<String>();
+		test("contains(Object obj) 11", sList1.contains(""), false);
+
+		sList1.add("");
+		sList1.add("burrito");
+		test("contains(Object obj) 12", sList1.contains(""), true);
+		test("contains(Object obj) 13", sList1.contains("burrito"), true);
+		test("contains(Object obj) 14", sList1.contains("Burrito"), false);
+
+
+		// containsAll(Collection c)
+		cList = new MyLinkedList<Character>();
+		c = new ArrayList<Character>();
+		test("containsAll(Collection c) 0", cList.containsAll(c), true);
+
+		c.add('a');
+		test("containsAll(Collection c) 1", cList.containsAll(c), false);
+
+		cList.add('b');
+		cList.add('u');
+		cList.add('r');
+		cList.add('r');
+		cList.add('i');
+		cList.add('t');
+		cList.add('o');
+		test("containsAll(Collection c) 2", cList.containsAll(c), false);
+
+		c.add('b');
+		c.add('u');
+		c.add('r');
+		c.add('r');
+		c.add('i');
+		c.add('t');
+		c.add('o');
+		test("containsAll(Collection c) 3", cList.containsAll(c), false);
+
+		cList.add('a');
+		test("containsAll(Collection c) 4", cList.containsAll(c), true);
+
+		c.clear();
+		test("containsAll(Collection c) 5", cList.containsAll(c), true);
+
+		c.add('t');
+		test("containsAll(Collection c) 6", cList.containsAll(c), true);
+
+		c.add('r');
+		c.add('b');
+		c.add('o');
+		test("containsAll(Collection c) 6", cList.containsAll(c), true);
+
+		c.add('x');
+		c.add('b');
+		c.add('u');
+		test("containsAll(Collection c) 7", cList.containsAll(c), false);
  	}
 
 }
