@@ -107,6 +107,9 @@ public class MyLinkedListTests {
 		test("hasNext() 8", iter.hasNext(), false);
 
 
+		System.out.println();
+
+
 		// add(E element)
 		iList1 = new MyLinkedList<Integer>();
 		iList2 = new MyLinkedList<Integer>();
@@ -135,6 +138,9 @@ public class MyLinkedListTests {
 		test("add(E element) 6", iList1.size(), 6);
 
 
+		System.out.println();
+
+
 		// add(int index, E element)
 		MyLinkedList<String> sList1 = new MyLinkedList<String>();
 
@@ -154,6 +160,9 @@ public class MyLinkedListTests {
 		test("add(int index, E element) 3", sList1, new MyLinkedList<String>(new String[]{"burrito", "Hello", "LinkedList", "World", "java"}));
 
 		test("add(int index, E element) 4", sList1.size(), 5);
+
+
+		System.out.println();
 
 
 		// addAll(Collection c)
@@ -186,6 +195,9 @@ public class MyLinkedListTests {
 		test("addAll(Collection c) 6", cList, new MyLinkedList<Character>(new Character[]{'a', 'p', 'p', 'l', 'e', 'b', 'a', 'n', 'a', 'n', 'a'}));
 		test("addAll(Collection c) 7", changed, true);
 		test("addAll(Collection c) 8", cList.size(), 11);
+
+
+		System.out.println();
 
 
 		// clear()
@@ -221,6 +233,9 @@ public class MyLinkedListTests {
 		test("clear() 9", cList, new MyLinkedList<Character>());
 
 
+		System.out.println();
+
+
 		// contains(Object obj)
 		MyLinkedList<Integer> iList = new MyLinkedList<Integer>(new Integer[]{0, 1, 2, 3, 5, 6, 8, 9});
 		test("contains(Object obj) 0", iList.contains(0), true);
@@ -245,6 +260,9 @@ public class MyLinkedListTests {
 		test("contains(Object obj) 12", sList1.contains(""), true);
 		test("contains(Object obj) 13", sList1.contains("burrito"), true);
 		test("contains(Object obj) 14", sList1.contains("Burrito"), false);
+
+
+		System.out.println();
 
 
 		// containsAll(Collection c)
@@ -293,6 +311,9 @@ public class MyLinkedListTests {
 		test("containsAll(Collection c) 7", cList.containsAll(c), false);
 
 
+		System.out.println();
+
+
 		// get(int index)
 		sList1.clear();
 		sList1.add("red");
@@ -334,6 +355,9 @@ public class MyLinkedListTests {
 		}
 
 
+		System.out.println();
+
+
 		// indexOf(Object obj)
 		test("indexOf(Object obj) 0", sList1.indexOf("red"), 0);
 		test("indexOf(Object obj) 1", sList1.indexOf("orange"), 1);
@@ -341,6 +365,9 @@ public class MyLinkedListTests {
 		test("indexOf(Object obj) 3", sList1.indexOf("purple"), 5);
 		test("indexOf(Object obj) 4", sList1.indexOf("brown"), -1);
 		test("indexOf(Object obj) 5", sList1.indexOf(123), -1);
+
+
+		System.out.println();
 
 
 		// isEmpty()
@@ -355,6 +382,9 @@ public class MyLinkedListTests {
 		test("isEmpty() 3", new MyLinkedList<Double>().isEmpty(), true);
 
 
+		System.out.println();
+
+
 		// lastIndexOf(Object obj)
 		iList.clear();
 		test("lastIndexOf(Object obj) 0", iList.lastIndexOf(2), -1);
@@ -367,6 +397,9 @@ public class MyLinkedListTests {
 		test("lastIndexOf(Object obj) 4", iList.lastIndexOf(1), 0);
 		test("lastIndexOf(Object obj) 5", iList.lastIndexOf("burrito"), -1);
 		test("lastIndexOf(Object obj) 6", iList.lastIndexOf(null), -1);
+
+
+		System.out.println();
 
 
 		// remove(int index)
@@ -430,6 +463,9 @@ public class MyLinkedListTests {
 		test("remove(int index) 8", sList1, new MyLinkedList<String>(new String[]{"red", "orange", "yellow"}));
 
 
+		System.out.println();
+
+
 		// remove(Object obj)
 		sList1.clear();
 		sList1.add("red");
@@ -465,6 +501,94 @@ public class MyLinkedListTests {
 		sList1.remove("green");
 		sList1.remove("blue");
 		test("remove(Object obj) 12", sList1, new MyLinkedList<String>());
+
+
+		System.out.println();
+
+
+		// removeAll(Collection c)
+		iList.clear();
+		Collection<Integer> iCol = new ArrayList<Integer>();
+
+		test("removeAll(Collection c) 0", iList.removeAll(iCol), false);
+
+		iCol.add(8);
+		test("removeAll(Collection c) 1", iList.removeAll(iCol), false);
+
+		iList.add(3);
+		test("removeAll(Collection c) 2", iList.removeAll(iCol), false);
+		test("removeAll(Collection c) 3", iList.size(), 1);
+
+		iCol.add(3);
+		test("removeAll(Collection c) 4", iList.removeAll(iCol), true);
+		test("removeAll(Collection c) 5", iList, new MyLinkedList<Integer>());
+
+		iList = new MyLinkedList<Integer>(new Integer[]{1, 3, 5, 6, 6, 4, 2});
+		iCol = Arrays.asList(new Integer[]{1, 2, 6});
+		test("removeAll(Collection c) 6", iList.removeAll(iCol), true);
+		test("removeAll(Collection c) 7", iList, new MyLinkedList<Integer>(new Integer[]{3, 5, 4}));
+
+		iList = new MyLinkedList<Integer>(new Integer[]{1, 3, 5, 6, 6, 4, 2});
+		iCol = Arrays.asList(new Integer[]{1, 14, 2, 6, 8, -10});
+		test("removeAll(Collection c) 8", iList.removeAll(iCol), true);
+		test("removeAll(Collection c) 9", iList, new MyLinkedList<Integer>(new Integer[]{3, 5, 4}));
+
+		iList = new MyLinkedList<Integer>(new Integer[]{1, 3, 5, 6, 6, 4, 2});
+		iCol = Arrays.asList(new Integer[]{-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+		test("removeAll(Collection c) 10", iList.removeAll(iCol), true);
+		test("removeAll(Collection c) 11", iList, new MyLinkedList<Integer>());
+
+
+		System.out.println();
+
+
+		// retainAll(Collection c)
+		iList.clear();
+		iCol = new ArrayList<Integer>();
+
+		test("retainAll(Collection c) 0", iList.retainAll(iCol), false);
+
+		iCol.add(8);
+		test("retainAll(Collection c) 1", iList.retainAll(iCol), false);
+
+		iList.add(3);
+		test("retainAll(Collection c) 2", iList.retainAll(iCol), true);
+		test("retainAll(Collection c) 3", iList, new MyLinkedList<Integer>());
+
+		iList.clear();
+		iList.add(3);
+		iList.add(8);
+		iList.add(3);
+		iList.add(8);
+		iList.add(3);
+		test("retainAll(Collection c) 4", iList.retainAll(iCol), true);
+		test("retainAll(Collection c) 5", iList, new MyLinkedList<Integer>(new Integer[]{8, 8}));
+
+		iList = new MyLinkedList<Integer>(new Integer[]{1, 3, 5, 6, 6, 4, 2});
+		iCol = Arrays.asList(new Integer[]{1, 2, 6});
+		test("retainAll(Collection c) 6", iList.retainAll(iCol), true);
+		test("retainAll(Collection c) 7", iList, new MyLinkedList<Integer>(new Integer[]{1, 6, 6, 2}));
+
+		iList = new MyLinkedList<Integer>(new Integer[]{1, 3, 5, 6, 6, 4, 2});
+		iCol = Arrays.asList(new Integer[]{3, 4, 5});
+		test("retainAll(Collection c) 8", iList.retainAll(iCol), true);
+		test("retainAll(Collection c) 9", iList, new MyLinkedList<Integer>(new Integer[]{3, 5, 4}));
+
+		iList = new MyLinkedList<Integer>(new Integer[]{1, 3, 5, 6, 6, 4, 2});
+		iCol = Arrays.asList(new Integer[]{1, 14, 2, 6, 8, -10});
+		test("retainAll(Collection c) 10", iList.retainAll(iCol), true);
+		test("retainAll(Collection c) 11", iList, new MyLinkedList<Integer>(new Integer[]{1, 6, 6, 2}));
+
+		iList = new MyLinkedList<Integer>(new Integer[]{1, 3, 5, 6, 6, 4, 2});
+		iCol = Arrays.asList(new Integer[]{-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+		test("retainAll(Collection c) 12", iList.retainAll(iCol), false);
+		test("retainAll(Collection c) 13", iList, new MyLinkedList<Integer>(new Integer[]{1, 3, 5, 6, 6, 4, 2}));
+
+		iList = new MyLinkedList<Integer>(new Integer[]{1, 3, 5, 6, 6, 4, 2});
+		iCol = Arrays.asList(new Integer[]{-10, 0, 10, 20, 30, 40});
+		test("retainAll(Collection c) 14", iList.retainAll(iCol), true);
+		test("retainAll(Collection c) 15", iList, new MyLinkedList<Integer>());
+
  	}
 
 }
