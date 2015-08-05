@@ -143,11 +143,6 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 		return -1;
 	}
 
-	public MyList<E> subList(int fromIndex, int toIndex) {
-		// your code here
-		return null;
-	}
-
 	public Object[] toArray() {
 		// your code here
 		return null;

@@ -95,11 +95,6 @@ public interface MyList<E> {
 	int size();
 
 	/**
-	 * Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
-	 */
-	MyList<E> subList(int fromIndex, int toIndex);
-
-	/**
 	 * Returns an array containing all of the elements in this list in proper sequence (from first to last element).
 	 */
 	Object[] toArray();
