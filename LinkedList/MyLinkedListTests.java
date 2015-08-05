@@ -157,9 +157,37 @@ public class MyLinkedListTests {
 		test("add(int index, E element) 3", sList1, new MyLinkedList<String>(new String[]{"burrito", "Hello", "World", "java"}));
 
 		sList1.add(2, "LinkedList");
-		test("add(int index, E element) 3", sList1, new MyLinkedList<String>(new String[]{"burrito", "Hello", "LinkedList", "World", "java"}));
+		test("add(int index, E element) 4", sList1, new MyLinkedList<String>(new String[]{"burrito", "Hello", "LinkedList", "World", "java"}));
 
-		test("add(int index, E element) 4", sList1.size(), 5);
+		test("add(int index, E element) 5", sList1.size(), 5);
+
+		name = "add(int index, E element) 6";
+		try {
+			sList1.add(-1, "whoops");
+		}
+		catch(Exception e) {
+			if(e instanceof IndexOutOfBoundsException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IndexOutOfBoundsException();
+				printFailed(name, e, expected);
+			}
+		}
+
+		name = "add(int index, E element) 7";
+		try {
+			sList1.add(765, "whoops");
+		}
+		catch(Exception e) {
+			if(e instanceof IndexOutOfBoundsException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IndexOutOfBoundsException();
+				printFailed(name, e, expected);
+			}
+		}
 
 
 		System.out.println();
