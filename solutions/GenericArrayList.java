@@ -46,7 +46,7 @@ public class GenericArrayList<E> {
 	 * @param val is the element to be added to the end of this list
 	 */
 	public void add(E val) {
-		insert(0, val);
+		insert(size(), val);
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class GenericArrayList<E> {
 		}
 
 		for(int i = 0; i < this.size(); i++) {
-			if (this.get(i) != otherList.get(i)) {
+			if (!this.get(i).equals(otherList.get(i))) {
 				return false;
 			}
 		}
