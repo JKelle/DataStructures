@@ -664,6 +664,29 @@ public class MyLinkedListTests {
 
 		iList.set(10, -1);
 		test("size() 6", iList.size(), 999999);
+
+
+		System.out.println();
+
+
+		// toArray()
+		sList1 = new MyLinkedList<String>(new String[]{"one", "two", "three", "four"});
+
+		Object[] ans = new Object[]{"one", "two", "three", "four"};
+		Object[] arr = sList1.toArray();
+		test("toArray() 0", Arrays.equals(ans, arr), true);
+		test("toArray() 1", ans == arr, false);
+
+		sList1.clear();
+		test("toArray() 2", Arrays.equals(sList1.toArray(), new Object[0]), true);
+
+		iList.clear();
+		ans = new Object[1000000];
+		for(int i = 0; i < ans.length; ++i) {
+			ans[i] = new Integer(i);
+			iList.add(new Integer(i));
+		}
+		test("toArray() 3", Arrays.equals(iList.toArray(), ans), true);
  	}
 
 }
