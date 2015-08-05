@@ -96,13 +96,7 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 
 	// O(n)
 	public void add(int index, E element) {
-		Node cur = head;
-
-		for(int i = 0; i < index; ++i) {
-			cur = cur.next;
-		}
-
-		insertAfter(cur, new Node(element));
+		insertAfter(getNode(index).prev, new Node(element));
 	}
 
 	// O(c)  number of elements in the Collection c
@@ -148,12 +142,27 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 			throw new IndexOutOfBoundsException();
 		}
 
-		Node cur = head.next;
-		for(int i = 0; i < index; ++i) {
-			cur = cur.next;
+		return getNode(index).data;
+	}
+
+	// O(n)
+	// returns tail node for index = size
+	private Node getNode(int index) {
+		if(index <= size()/2) {
+			// front half
+			Node cur = head.next;
+			for(int i = 0; i < index; ++i) {
+				cur = cur.next;
+			}
+			return cur;
 		}
 
-		return cur.data;
+		// back half
+		Node cur = tail;
+		for(int i = size(); i > index; --i) {
+			cur = cur.prev;
+		}
+		return cur;
 	}
 
 	// O(n)
@@ -168,6 +177,7 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 		return -1;
 	}
 
+	// O(1)
 	private void insertAfter(Node cur, Node newNode) {
 		newNode.prev = cur;
 		newNode.next = cur.next;
@@ -217,6 +227,7 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 		return val;
 	}
 
+	// O(n)
 	public boolean remove(Object obj) {
 		Iterator<E> iter = iterator();
 		while(iter.hasNext()) {
@@ -228,58 +239,84 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 		return false;
 	}
 
+	// Suppose Collection c has C elements.
+	// Complexity of removeAll depends on complexity of c.contians().
+	// If c.contains() is O(1), then removeAll() is O(n).			Ex. HashSet
+	// If c.contains() is O(C), then removeAll() is O(n*C).			Ex. LinkedList or unsorted ArrayList
+	// If c.contains() is O(log C) then removeAll() is O(n*log C)	Ex. Sorted ArrayList or binary search tree
 	public boolean removeAll(Collection<?> c) {
-		// your code here
-		return false;
+		Iterator<E> iter = iterator();
+		boolean changed = false;
+		while(iter.hasNext()) {
+			if(c.contains(iter.next())) {
+				iter.remove();
+				changed = true;
+			}
+		}
+		return changed;
 	}
 
+	// same complexity as removeAll()
 	public boolean retainAll(Collection<?> c) {
-		// your code here
-		return false;
+		Iterator<E> iter = iterator();
+		boolean changed = false;
+		while(iter.hasNext()) {
+			if(!c.contains(iter.next())) {
+				iter.remove();
+				changed = true;
+			}
+		}
+		return changed;
 	}
 
+	// O(n)
 	public E set(int index, E element) {
-		return null;
+		if(index < 0 || index >= size()) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		Node node = getNode(index);  // O(n)
+		E oldData = node.data;
+		node.data = element;
+
+		return oldData;
 	}
 
+	// O(1)
 	public int size() {
 		return size;
 	}
 
-	public MyList<E> subList(int fromIndex, int toIndex) {
-		// your code here
-		return null;
-	}
-
+	// O(n)
 	public Object[] toArray() {
-		// your code here
-		return null;
+		Object[] arr = new Object[size()];
+		int i = 0;
+		for(E element : this) {
+			arr[i] = element;
+			++i;
+		}
+		return arr;
 	}
 
-	private boolean debug = false;
+	// O(n)
 	public boolean equals(Object obj) {
 		if(!(obj instanceof MyLinkedList)) {
-			if(debug) System.out.println("not instanceof MyLinkedList");
 			return false;
 		}
 
 		MyLinkedList other = (MyLinkedList<?>)obj;
 		if(other.size() != size()) {
-			if(debug) System.out.println("sizes don't match");
 			return false;
 		}
 
 		Iterator<E> iter1 = iterator();
 		Iterator<?> iter2 = other.iterator();
-
 		while(iter1.hasNext()) {
 			if(!(iter1.next().equals(iter2.next()))) {
-				if(debug) System.out.println("different content");
 				return false;
 			}
 		}
 
-		if(debug) System.out.println("Lists are equal");
 		return true;
 	}
 
