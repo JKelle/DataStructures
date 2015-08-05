@@ -96,6 +96,10 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 
 	// O(n)
 	public void add(int index, E element) {
+		if(index < 0 || index > size()) {
+			throw new IndexOutOfBoundsException();
+		}
+
 		insertAfter(getNode(index).prev, new Node(element));
 	}
 
