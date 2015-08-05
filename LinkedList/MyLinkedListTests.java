@@ -589,6 +589,81 @@ public class MyLinkedListTests {
 		test("retainAll(Collection c) 14", iList.retainAll(iCol), true);
 		test("retainAll(Collection c) 15", iList, new MyLinkedList<Integer>());
 
+
+		System.out.println();
+
+
+		// set(int index, E element)
+		cList = new MyLinkedList<Character>(new Character[]{'a', 'b', 'c', 'd', 'e'});
+		test("set(int index, E element) 0", cList.set(0, 'z'), 'a');
+		test("set(int index, E element) 1", cList, new MyLinkedList<Character>(new Character[]{'z', 'b', 'c', 'd', 'e'}));
+
+		test("set(int index, E element) 2", cList.set(1, 'y'), 'b');
+		test("set(int index, E element) 3", cList, new MyLinkedList<Character>(new Character[]{'z', 'y', 'c', 'd', 'e'}));
+
+		test("set(int index, E element) 4", cList.set(4, 'v'), 'e');
+		test("set(int index, E element) 5", cList, new MyLinkedList<Character>(new Character[]{'z', 'y', 'c', 'd', 'v'}));
+
+		cList = new MyLinkedList<Character>();
+		cList.add('a');
+		test("set(int index, E element) 6", cList.set(0, 'a'), 'a');
+		test("set(int index, E element) 7", cList, new MyLinkedList<Character>(new Character[]{'a'}));
+
+		name = "set(int index, E element) 8";
+		try {
+			cList.set(1, 'a');
+		}
+		catch(Exception e) {
+			if(e instanceof IndexOutOfBoundsException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IndexOutOfBoundsException();
+				printFailed(name, e, expected);
+			}
+		}
+
+		name = "set(int index, E element) 9";
+		try {
+			cList.set(-1, 'a');
+		}
+		catch(Exception e) {
+			if(e instanceof IndexOutOfBoundsException){
+				printPassed(name);
+			}
+			else {
+				Exception expected = new IndexOutOfBoundsException();
+				printFailed(name, e, expected);
+			}
+		}
+
+
+		System.out.println();
+
+
+		// size()
+		iList = new MyLinkedList<Integer>();
+		test("size() 0", iList.size(), 0);
+
+		iList.clear();
+		test("size() 1", iList.size(), 0);
+
+		iList.addAll(Arrays.asList(new Integer[]{5, 3, -1, -1, 0}));
+		test("size() 2", iList.size(), 5);
+
+		iList.clear();
+		test("size() 3", iList.size(), 0);
+
+		for(int i = 0; i < 1000000; ++i) {
+			iList.add(i);
+		}
+		test("size() 4", iList.size(), 1000000);
+
+		iList.remove(0);
+		test("size() 5", iList.size(), 999999);
+
+		iList.set(10, -1);
+		test("size() 6", iList.size(), 999999);
  	}
 
 }
