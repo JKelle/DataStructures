@@ -10,6 +10,8 @@ import java.util.Iterator;
  * It is up to you whether to use singly-linked or doubly-linked nodes. Doubly-
  * linked nodes make the code easier, however they take up more memory. There is
  * a solution for both doubly- and singly-linked nodes.
+ *
+ * Hint: Implement the Node class and the iterator methods first.
  */
 public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 
