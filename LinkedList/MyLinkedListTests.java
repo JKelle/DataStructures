@@ -6,6 +6,9 @@ import java.util.Arrays;
 
 public class MyLinkedListTests {
 
+	private static int numFailed = 0;
+	private static int numPassed = 0;
+
 	private static void printPassed(String name) {
 		System.out.println(name + ":  Passed");
 	}
@@ -18,9 +21,23 @@ public class MyLinkedListTests {
 	private static void test(String name, Object result, Object answer) {
 		if(answer.equals(result)) {
 			printPassed(name);
+			++numPassed;
 		}
 		else {
 			printFailed(name, result, answer);
+			++numFailed;
+		}
+	}
+
+	private static void printStats() {
+		int total = numPassed + numFailed;
+		System.out.println("Passed " + numPassed + " of " + total);
+
+		if(numPassed == total) {
+			System.out.println("All tests passing! :)");
+		}
+		else {
+			System.out.println("Failed " + numFailed + " tests.");
 		}
 	}
 
@@ -43,38 +60,26 @@ public class MyLinkedListTests {
 		Iterator<Integer> iter = iList1.iterator();
 		test("hasNext() 2", iter.hasNext(), true);
 
-		String name = "remove() 0";
+		String result = "no exception thrown";
 		try {
 			iter.remove();
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IllegalStateException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IllegalStateException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("remove() 0", result, "java.lang.IllegalStateException");
 
 		test("next() 0", iter.next(), 1);
 
 		iter.remove();
 		test("remove() 1", iList1, new MyLinkedList<Integer>(new Integer[]{2, 3, 4}));
 
-		name = "remove() 2";
+		result = "no exception thrown";
 		try {
 			iter.remove();
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IllegalStateException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IllegalStateException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("remove() 2", result, "java.lang.IllegalStateException");
 
 		test("hasNext() 3", iter.hasNext(), true);
 
@@ -90,21 +95,23 @@ public class MyLinkedListTests {
 
 		test("hasNext() 7", iter.hasNext(), false);
 
-		name = "remove() 4";
+		result = "no exception thrown";
 		try {
 			iter.remove();
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IllegalStateException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IllegalStateException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("remove() 4", result, "java.lang.IllegalStateException");
 
 		test("hasNext() 8", iter.hasNext(), false);
+
+		result = "no exception thrown";
+		try {
+			iter.next();
+		} catch(Exception e) {
+			result = e.getClass().getName();
+		}
+		test("next() 4", result, "java.util.NoSuchElementException");
 
 
 		System.out.println();
@@ -161,33 +168,21 @@ public class MyLinkedListTests {
 
 		test("add(int index, E element) 5", sList1.size(), 5);
 
-		name = "add(int index, E element) 6";
+		result = "no exception thrown";
 		try {
 			sList1.add(-1, "whoops");
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IndexOutOfBoundsException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IndexOutOfBoundsException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("add(int index, E element) 6", result, "java.lang.IndexOutOfBoundsException");
 
-		name = "add(int index, E element) 7";
+		result = "no exception thrown";
 		try {
-			sList1.add(765, "whoops");
+			sList1.add(985, "whoops");
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IndexOutOfBoundsException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IndexOutOfBoundsException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("add(int index, E element) 7", result, "java.lang.IndexOutOfBoundsException");
 
 
 		System.out.println();
@@ -354,33 +349,21 @@ public class MyLinkedListTests {
 		test("get(int index) 1", sList1.get(4), "blue");
 		test("get(int index) 2", sList1.get(5), "purple");
 
-		name = "get(int index) 3";
+		result = "no exception thrown";
 		try {
 			sList1.get(-1);
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IndexOutOfBoundsException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IndexOutOfBoundsException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("get(int index) 3", result, "java.lang.IndexOutOfBoundsException");
 
-		name = "get(int index) 4";
+		result = "no exception thrown";
 		try {
 			sList1.get(6);
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IndexOutOfBoundsException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IndexOutOfBoundsException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("get(int index) 4", result, "java.lang.IndexOutOfBoundsException");
 
 
 		System.out.println();
@@ -432,19 +415,13 @@ public class MyLinkedListTests {
 
 		// remove(int index)
 		sList1.clear();
-		name = "remove(int index) 0";
+		result = "no exception thrown";
 		try {
 			sList1.remove(0);
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IndexOutOfBoundsException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IndexOutOfBoundsException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("remove(int index) 0", result, "java.lang.IndexOutOfBoundsException");
 
 		sList1.add("red");
 		test("remove(int index) 1", sList1.remove(0), "red");
@@ -457,33 +434,21 @@ public class MyLinkedListTests {
 		sList1.add("blue");
 		sList1.add("purple");
 
-		name = "remove(int index) 3";
+		result = "no exception thrown";
 		try {
 			sList1.remove(6);
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IndexOutOfBoundsException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IndexOutOfBoundsException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("remove(int index) 3", result, "java.lang.IndexOutOfBoundsException");
 
-		name = "remove(int index) 4";
+		result = "no exception thrown";
 		try {
 			sList1.remove(-1);
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IndexOutOfBoundsException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IndexOutOfBoundsException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("remove(int index) 4", result, "java.lang.IndexOutOfBoundsException");
 
 		test("remove(int index) 5", sList1.remove(3), "green");
 		test("remove(int index) 6", sList1.remove(3), "blue");
@@ -637,33 +602,22 @@ public class MyLinkedListTests {
 		test("set(int index, E element) 6", cList.set(0, 'a'), 'a');
 		test("set(int index, E element) 7", cList, new MyLinkedList<Character>(new Character[]{'a'}));
 
-		name = "set(int index, E element) 8";
+		result = "no exception thrown";
 		try {
 			cList.set(1, 'a');
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IndexOutOfBoundsException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IndexOutOfBoundsException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("set(int index, E element) 8", result, "java.lang.IndexOutOfBoundsException");
 
-		name = "set(int index, E element) 9";
+		result = "no exception thrown";
 		try {
 			cList.set(-1, 'a');
+		} catch(Exception e) {
+			result = e.getClass().getName();
 		}
-		catch(Exception e) {
-			if(e instanceof IndexOutOfBoundsException){
-				printPassed(name);
-			}
-			else {
-				Exception expected = new IndexOutOfBoundsException();
-				printFailed(name, e, expected);
-			}
-		}
+		test("set(int index, E element) 9", result, "java.lang.IndexOutOfBoundsException");
+
 
 
 		System.out.println();
@@ -715,6 +669,9 @@ public class MyLinkedListTests {
 			iList.add(new Integer(i));
 		}
 		test("toArray() 3", Arrays.equals(iList.toArray(), ans), true);
+
+		System.out.println();
+		printStats();
  	}
 
 }
