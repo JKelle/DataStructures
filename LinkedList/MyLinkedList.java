@@ -15,14 +15,14 @@ import java.util.Iterator;
  */
 public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 
-	private static class Node<E> {
+	private static class Node {
 		// your code here
 	}
 
 	/**
 	 * Implements the java Iterator interface.
 	 */
-	private static class MyIterator<E> implements Iterator<E> {
+	private static class MyIterator implements Iterator<E> {
 
 		/**
 		 * Constructor
@@ -75,8 +75,8 @@ public class MyLinkedList<E> implements MyList<E>, Iterable<E> {
 
 	}
 
-	private Node<E> head;
-	private Node<E> tail;
+	private Node head;
+	private Node tail;
 
 	/**
 	 * Constructor
