@@ -15,6 +15,16 @@ public class MyStack<E> implements MyStackInterface<E> {
 	}
 
 	/**
+	 * Constructor
+	 * @param arr - array of elements to be added to this stack. arr[0] is the first element to be pushed.
+	 */
+	public MyStack(E[] arr) {
+		for(E element : arr) {
+			this.arr.add(element);
+		}
+	}
+
+	/**
 	 * Tests if this stack is empty.
 	 * @return true if and only if this stack contains no items; false otherwise.
 	 *
