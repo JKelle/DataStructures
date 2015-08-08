@@ -12,7 +12,6 @@ public class MyQueueTests {
 	}
 
 	private static void printFailed(String name, Object result, Object answer) {
-
 		System.out.print(name + ":  FAILED");
 		System.out.println("  expected " + answer + ", got " + result);
 	}
@@ -25,7 +24,7 @@ public class MyQueueTests {
 
 		if(passed) {
 			printPassed(name);
-				++numPassed;
+			++numPassed;
 		}
 		else {
 			printFailed(name, result, answer);
