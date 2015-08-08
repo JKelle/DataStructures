@@ -174,7 +174,7 @@ public class IntArrayList {
 			++start;
 			++end;
 		}
-		size -= end - start;
+		size = start;
 	}
 
 	/**
@@ -220,11 +220,11 @@ public class IntArrayList {
 	 * @return new IntArrayList
 	 */
 	public IntArrayList getSubList(int start, int end) {
-		int[] subArr = new int[end - start];
-		for(int i = 0; i < end - start; ++i) {
-			subArr[i] = arr[start + i];
+		IntArrayList newList = new IntArrayList();
+		for(int i = start; i < end; ++i) {
+			newList.add(this.get(i));
 		}
-		return new IntArrayList(subArr);
+		return newList;
 	}
 
 	/**
