@@ -19,7 +19,12 @@ public class MyLinkedListTests {
 	}
 
 	private static void test(String name, Object result, Object answer) {
-		if(answer.equals(result)) {
+		boolean passed = false;
+		try {
+			passed = answer.equals(result);
+		} catch(Exception e) {}
+
+		if(passed) {
 			printPassed(name);
 			++numPassed;
 		}
@@ -30,8 +35,10 @@ public class MyLinkedListTests {
 	}
 
 	private static void printStats() {
+		System.out.println();
+		System.out.println("---------------------");
 		int total = numPassed + numFailed;
-		System.out.println("Passed " + numPassed + " of " + total);
+		System.out.println("Passed " + numPassed + " of " + total + " tests.");
 
 		if(numPassed == total) {
 			System.out.println("All tests passing! :)");
