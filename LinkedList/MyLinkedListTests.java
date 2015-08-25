@@ -15,7 +15,7 @@ public class MyLinkedListTests {
 
 	private static void printFailed(String name, Object result, Object answer) {
 		System.out.print(name + ":  FAILED");
-		System.out.println("  expected " + answer.toString() + ", got " + result.toString());
+		System.out.println("  expected " + answer + ", got " + result);
 	}
 
 	private static void test(String name, Object result, Object answer) {
