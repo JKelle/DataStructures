@@ -57,3 +57,12 @@ Queue
 Objectives:
 * Queue data structure
 * Using one data structure to implement another
+
+Binary Search Tree
+------------------
+`BinarySearchTree.java` defines a binary search tree. It implements `add()`, `remove()`, and `contains()`. It also implements the three tree traversals: `in-order`, `pre-order`, and `post-order`. Each tree traversal is implemented as both recursive and iterative.
+
+Objectives:
+* Tree data structure
+* Binary search tree data structure
+* Tree traversal algorithms
