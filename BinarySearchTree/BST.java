@@ -22,54 +22,6 @@ public interface BST<E> {
 	public boolean contains(E element);
 
 	/**
-	 * Performs an in-order traversal of this tree. The implementation is iterative.
-	 * @return a List with the elements in sorted order.
-	 *
-	 * O(n)
-	 */
-	public List<E> inOrderIterative();
-
-	/**
-	 * Performs an in-order traversal of this tree. The implementation is recursive.
-	 * @return a List with the elements in sorted order.
-	 *
-	 * O(n)
-	 */
-	public List<E> inOrderRecursive();
-
-	/**
-	 * Performs a post-order traversal of this tree. The implementation is iterative.
-	 * @return a List with the elements in post order.
-	 *
-	 * O(n)
-	 */
-	public List<E> postOrderIterative();
-
-	/**
-	 * Performs a post-order traversal of this tree. The implementation is recursive.
-	 * @return a List with the elements in post order.
-	 *
-	 * O(n)
-	 */
-	public List<E> postOrderRecursive();
-
-	/**
-	 * Performs a pre-order traversal of this tree. The implementation is iterative.
-	 * @return a List with the elements in pre order.
-	 *
-	 * O(n)
-	 */
-	public List<E> preOrderIterative();
-
-	/**
-	 * Performs a pre-order traversal of this tree. The implementation is recursive.
-	 * @return a List with the elements in pre order.
-	 *
-	 * O(n)
-	 */
-	public List<E> preOrderRecursive();
-
-	/**
 	 * Removes the first occurance specified element from this tree, if it's present.
 	 * @param element: the element to remove
 	 * @return true of the tree changed as a result of this call, false otherwise.
