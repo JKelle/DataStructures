@@ -214,6 +214,23 @@ public class BinarySearchTreeTests {
 		test("case 12 - contains(9)", bst.contains(9), false);
 		test("case 12 - contains(4)", bst.contains(4), false);
 
+		System.out.println();
+
+		bst = new BinarySearchTree<Integer>();
+		bst.add(10);
+		bst.add(10);
+		test("case 13 - isValid()", bst.isValid(), true);
+		test("case 13 - size()", bst.size(), 2);
+		test("case 13 - contains(5)", bst.contains(5), false);
+		test("case 13 - contains(9)", bst.contains(10), true);
+
+		System.out.println();
+
+		test("case 14 - remove(10)", bst.remove(10), true);
+		test("case 14 - isValid()", bst.isValid(), true);
+		test("case 14 - size()", bst.size(), 1);
+		test("case 14 - contains(9)", bst.contains(10), true);
+
 		printStats();
 	}
 }

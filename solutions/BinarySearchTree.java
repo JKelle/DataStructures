@@ -3,6 +3,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Stack;
 
+/**
+ * Binary Search Tree
+ * objects less than or equal to a given node go to the left subtree
+ * objects greater than a given node go to the right subtree
+ */
 public class BinarySearchTree<E extends Comparable> implements BST<E> {
 
 	Node root = null;
@@ -39,7 +44,7 @@ public class BinarySearchTree<E extends Comparable> implements BST<E> {
 	}
 
 	private void add(Node curNode, E newElement) {
-		if(newElement.compareTo(curNode.data) < 0) {
+		if(newElement.compareTo(curNode.data) <= 0) {
 			// go left
 			if(curNode.left == null) {
 				curNode.left = new Node(newElement);
@@ -48,7 +53,7 @@ public class BinarySearchTree<E extends Comparable> implements BST<E> {
 				add(curNode.left, newElement);
 			}
 		}
-		else if(newElement.compareTo(curNode.data) > 0) {
+		else {
 			// go right
 			if(curNode.right == null) {
 				curNode.right = new Node(newElement);
@@ -56,9 +61,6 @@ public class BinarySearchTree<E extends Comparable> implements BST<E> {
 			else {
 				add(curNode.right, newElement);
 			}
-		}
-		else {
-			throw new IllegalArgumentException("element already in tree");
 		}
 	}
 
@@ -75,7 +77,7 @@ public class BinarySearchTree<E extends Comparable> implements BST<E> {
 			if(element.equals(curNode.data)) {
 				return true;
 			}
-			else if(element.compareTo(curNode.data) < 0) {
+			else if(element.compareTo(curNode.data) <= 0) {
 				curNode = curNode.left;
 			}
 			else {
@@ -86,7 +88,8 @@ public class BinarySearchTree<E extends Comparable> implements BST<E> {
 	}
 
 	/**
-	 * Removes the first occurance specified element from this tree, if it's present.
+	 * Removes the specified element from this tree if it's present. If there
+	 * duplicate elements, remove any one of them.
 	 * @param element: the element to remove
 	 * @return true of the tree changed as a result of this call, false otherwise.
 	 *
@@ -106,7 +109,7 @@ public class BinarySearchTree<E extends Comparable> implements BST<E> {
 		while(curNode != null && element.compareTo(curNode.data) != 0) {
 			parent = curNode;
 
-			if(element.compareTo(curNode.data) < 0) {
+			if(element.compareTo(curNode.data) <= 0) {
 				curNode = curNode.left;
 			}
 			else {
@@ -231,12 +234,12 @@ public class BinarySearchTree<E extends Comparable> implements BST<E> {
 			return true;
 		}
 
-		if(!(lowerBound == null || cur.data.compareTo(lowerBound) > 0)) {
+		if(!(lowerBound == null || cur.data.compareTo(lowerBound) >= 0)) {
 			// current element is too large
 			return false;
 		}
 
-		if(!(upperBound == null || cur.data.compareTo(upperBound) < 0)) {
+		if(!(upperBound == null || cur.data.compareTo(upperBound) <= 0)) {
 			// current element is too small
 			return false;
 		}
