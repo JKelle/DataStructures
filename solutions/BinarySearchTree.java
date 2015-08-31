@@ -8,6 +8,9 @@ public class BinarySearchTree<E extends Comparable> implements BST<E> {
 	Node root = null;
 	int size = 0;
 
+	/**
+	 * Node class. You shouldn't need to edit this class.
+	 */
 	private class Node {
 		public E data;
 		public Node left;
@@ -199,6 +202,61 @@ public class BinarySearchTree<E extends Comparable> implements BST<E> {
 	 */
 	public int size() {
 		return size;
+	}
+
+	/**
+	 * Inspects the internal structure of this tree (how the nodes are linked),
+	 * and checks if it's a valid binary search tree.
+	 * 1. All nodes in the left sub-tree are less than this node.
+	 * 2. All nodes in the right sub-tree are greater than this node.
+	 * You shouldn't edit this method.
+	 * @return true if this is a valid binary search tree, false otherwise.
+	 *
+	 * O(n)
+	 */
+	public boolean isValid() {
+		if(root == null) {
+			return true;
+		}
+
+		return isValidHelper(root.left, null, root.data) &&
+		       isValidHelper(root.right, root.data, null);
+	}
+
+	/**
+	 * recursive helper method for isValid()
+	 */
+	private boolean isValidHelper(Node cur, E lowerBound, E upperBound) {
+		if(cur == null) {
+			return true;
+		}
+
+		if(!(lowerBound == null || cur.data.compareTo(lowerBound) > 0)) {
+			// current element is too large
+			return false;
+		}
+
+		if(!(upperBound == null || cur.data.compareTo(upperBound) < 0)) {
+			// current element is too small
+			return false;
+		}
+
+		return isValidHelper(cur.left, lowerBound, min(cur.data, upperBound)) &&
+		       isValidHelper(cur.left, max(cur.data, lowerBound), upperBound);
+	}
+
+	private E min(E elem1, E elem2) {
+		if(elem1.compareTo(elem1) < 0) {
+			return elem1;
+		}
+		return elem2;
+	}
+
+	private E max(E elem1, E elem2) {
+		if(elem1.compareTo(elem1) > 0) {
+			return elem1;
+		}
+		return elem2;
 	}
 
 }

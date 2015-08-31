@@ -51,6 +51,7 @@ public class BinarySearchTreeTests {
 
 		System.out.println();
 
+		test("case 0 - isValid()", bst.isValid(), true);
 		test("case 0 - size()", bst.size(), 0);
 		test("case 0 - contains(5)", bst.contains(5), false);
 		test("case 0 - contains(9)", bst.contains(9), false);
@@ -61,6 +62,7 @@ public class BinarySearchTreeTests {
 		// 5
 
 		bst.add(5);
+		test("case 1 - isValid()", bst.isValid(), true);
 		test("case 1 - size()", bst.size(), 1);
 		test("case 1 - contains(5)", bst.contains(5), true);
 		test("case 1 - contains(9)", bst.contains(9), false);
@@ -72,6 +74,7 @@ public class BinarySearchTreeTests {
 		//    1
 
 		bst.add(1);
+		test("case 2 - isValid()", bst.isValid(), true);
 		test("case 2 - size()", bst.size(), 2);
 		test("case 2 - contains(5)", bst.contains(5), true);
 		test("case 2 - contains(9)", bst.contains(9), false);
@@ -83,6 +86,7 @@ public class BinarySearchTreeTests {
 		//    1   9
 
 		bst.add(9);
+		test("case 3 - isValid()", bst.isValid(), true);
 		test("case 3 - size()", bst.size(), 3);
 		test("case 3 - contains(5)", bst.contains(5), true);
 		test("case 3 - contains(9)", bst.contains(9), true);
@@ -95,6 +99,7 @@ public class BinarySearchTreeTests {
 		//     3
 
 		bst.add(3);
+		test("case 4 - isValid()", bst.isValid(), true);
 		test("case 4 - size()", bst.size(), 4);
 		test("case 4 - contains(5)", bst.contains(5), true);
 		test("case 4 - contains(9)", bst.contains(9), true);
@@ -107,6 +112,7 @@ public class BinarySearchTreeTests {
 		//     3   7
 
 		bst.add(7);
+		test("case 5 - isValid()", bst.isValid(), true);
 		test("case 5 - size()", bst.size(), 5);
 		test("case 5 - contains(5)", bst.contains(5), true);
 		test("case 5 - contains(9)", bst.contains(9), true);
@@ -119,6 +125,7 @@ public class BinarySearchTreeTests {
 		// 0   3   7
 
 		bst.add(0);
+		test("case 6 - isValid()", bst.isValid(), true);
 		test("case 6 - size()", bst.size(), 6);
 		test("case 6 - contains(5)", bst.contains(5), true);
 		test("case 6 - contains(9)", bst.contains(9), true);
@@ -131,6 +138,7 @@ public class BinarySearchTreeTests {
 		// 0   3   7   10
 
 		bst.add(10);
+		test("case 7 - isValid()", bst.isValid(), true);
 		test("case 7 - size()", bst.size(), 7);
 		test("case 7 - contains(5)", bst.contains(5), true);
 		test("case 7 - contains(9)", bst.contains(9), true);
@@ -144,6 +152,7 @@ public class BinarySearchTreeTests {
 
 		boolean result = bst.remove(10);
 		test("case 8 - remove(10)", result, true);
+		test("case 8 - isValid()", bst.isValid(), true);
 		test("case 8 - size()", bst.size(), 6);
 		test("case 8 - contains(5)", bst.contains(5), true);
 		test("case 8 - contains(9)", bst.contains(9), true);
@@ -157,6 +166,7 @@ public class BinarySearchTreeTests {
 
 		result = bst.remove(9);
 		test("case 9 - remove(9)", result, true);
+		test("case 9 - isValid()", bst.isValid(), true);
 		test("case 9 - size()", bst.size(), 5);
 		test("case 9 - contains(5)", bst.contains(5), true);
 		test("case 9 - contains(9)", bst.contains(9), false);
@@ -170,6 +180,7 @@ public class BinarySearchTreeTests {
 
 		result = bst.remove(1);
 		test("case 10 - remove(1)", result, true);
+		test("case 10 - isValid()", bst.isValid(), true);
 		test("case 10 - size()", bst.size(), 4);
 		test("case 10 - contains(5)", bst.contains(5), true);
 		test("case 10 - contains(9)", bst.contains(9), false);
@@ -183,6 +194,7 @@ public class BinarySearchTreeTests {
 
 		result = bst.remove(5);
 		test("case 11 - remove(5)", result, true);
+		test("case 11 - isValid()", bst.isValid(), true);
 		test("case 11 - size()", bst.size(), 3);
 		test("case 11 - contains(5)", bst.contains(5), false);
 		test("case 11 - contains(9)", bst.contains(9), false);
@@ -196,6 +208,7 @@ public class BinarySearchTreeTests {
 
 		result = bst.remove(5);
 		test("case 12 - remove(5)", result, false);
+		test("case 12 - isValid()", bst.isValid(), true);
 		test("case 12 - size()", bst.size(), 3);
 		test("case 12 - contains(5)", bst.contains(5), false);
 		test("case 12 - contains(9)", bst.contains(9), false);
